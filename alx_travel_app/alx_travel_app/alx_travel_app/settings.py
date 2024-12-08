@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b*xa0!&!y3c&-jo$y=pdnqd+2pg6u87z4rc_#s7d6vkzwgtby!'
+SECRET_KEY = 'django-insecure-e3&jjg+*t+bu1tt)^9(q4i6u%uj!k4n^phrc!2()bm0ly%5+ju'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    # 'django.contrib.staticfiles',
     'drf_yasg',
-    'listings',
+
+    'alx_travel_app.listings',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +127,16 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Celery using RabbitMQ as the message broker
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
+
+ #Results  backend (optional, but recommended for montoring)
+CELERY_RESULT_BACKEND = 'rpc://'
+
+CELERY_WORKER_POOL = 'solo'
+
+# Swagger documentation config
 SWAGGER_SETTINGS = {
      # default inspector classes, see advanced documentation
      'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
@@ -181,14 +191,3 @@ REDOC_SETTINGS = {
     'EXPAND_RESPONSES': 'all',
     'PATH_IN_MIDDLE': False,
 }
-
-
-# Celery + RabbitMQ Congig
- #settings.py
- #RabbitMQ as the message broker
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
-
- #Results  backend (optional, but recommended for montoring)
-CELERY_RESULT_BACKEND = 'rpc://'
-
-CELERY_WORKER_POOL = 'solo'
